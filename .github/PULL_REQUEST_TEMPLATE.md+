@@ -1,0 +1,52 @@
+# Pull Request – Riwaq
+
+<!--
+Thank you! Please fill out this template so reviewers can understand the change quickly.
+-->
+
+## Summary
+<!-- What changed? A one-liner is fine. -->
+
+## Why
+<!-- The problem this solves, or the goal this achieves. Link any context if needed. -->
+
+## Linked Issues
+<!-- e.g. Closes #123, Relates to #456 -->
+Closes #
+
+## Type of change
+- [ ] Feature
+- [ ] Fix
+- [ ] Chore / Refactor
+- [ ] Docs
+- [ ] Other
+
+## Screenshots / Recordings (UI changes)
+<!-- Drag & drop images or GIFs. Show key states: default, loading, error, mobile if relevant. -->
+
+## How to test (manual steps)
+1. `git switch main && git pull`
+2. `git switch <your-branch>`
+3. `npm i && npm run dev`
+4. Navigate to: 
+5. Verify:
+
+## Checklist (please confirm)
+- [ ] Branch name follows convention (`feat/<scope>`, `fix/<scope>`, `chore/<scope>`, `docs/<scope>`).
+- [ ] Branch is up to date with `main` (merged or rebased).
+- [ ] Small, focused PR (ideally ≤ ~300–400 LOC).
+- [ ] Runs locally with `npm run dev` (no console errors).
+- [ ] **Tailwind only** for styling (no other UI libs).
+- [ ] Forms use **Formik + Yup** (no browser `alert()` validation).
+- [ ] No direct `localStorage` access in components (use Redux thunks/slice).
+- [ ] Protected routes use `<ProtectedRoute>` (and `requireAdmin` for admin-only).
+- [ ] Strings/labels are clear and consistent.
+- [ ] Added/updated comments where helpful.
+
+## Risk / Rollback plan
+<!-- Any breaking changes? How to roll back if needed (e.g., revert commit, feature flag)? -->
+
+## Environment / Config changes
+- [ ] No new env vars
+- [ ] New/changed env vars documented in `.env.example` (list them below)
+
