@@ -6,17 +6,24 @@ import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { initAuth, logout as logoutThunk } from "./features/auth/authSlice";
+import {
+  startAuthListener,
+  logoutUser,
+  selectCurrentUser,
+  selectIsAuthInitialized,
+} from "./features/auth/authSlice";
 
 export default function App() {
   const dispatch = useDispatch();
-  const { user, inited } = useSelector((s) => s.auth);
+
+  const user = useSelector(selectCurrentUser);
+  const isInitialized = useSelector(selectIsAuthInitialized);
 
   useEffect(() => {
-    dispatch(initAuth());
+    dispatch(startAuthListener());
   }, [dispatch]);
 
-  if (!inited) {
+  if (!isInitialized) {
     return <div className="p-4 text-sm text-gray-600">Loading…</div>;
   }
 
@@ -50,7 +57,7 @@ export default function App() {
               {user && (
                 <button
                   onClick={() => {
-                    dispatch(logoutThunk());
+                    dispatch(logoutUser());
                   }}
                   className="hover:underline"
                 >
