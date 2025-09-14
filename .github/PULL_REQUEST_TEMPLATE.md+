@@ -7,13 +7,6 @@ Thank you! Please fill out this template so reviewers can understand the change 
 ## Summary
 <!-- What changed? A one-liner is fine. -->
 
-## Why
-<!-- The problem this solves, or the goal this achieves. Link any context if needed. -->
-
-## Linked Issues
-<!-- e.g. Closes #123, Relates to #456 -->
-Closes #
-
 ## Type of change
 - [ ] Feature
 - [ ] Fix
@@ -24,12 +17,6 @@ Closes #
 ## Screenshots / Recordings (UI changes)
 <!-- Drag & drop images or GIFs. Show key states: default, loading, error, mobile if relevant. -->
 
-## How to test (manual steps)
-1. `git switch main && git pull`
-2. `git switch <your-branch>`
-3. `npm i && npm run dev`
-4. Navigate to: 
-5. Verify:
 
 ## Checklist (please confirm)
 - [ ] Branch name follows convention (`feat/<scope>`, `fix/<scope>`, `chore/<scope>`, `docs/<scope>`).
