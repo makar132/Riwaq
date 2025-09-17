@@ -1,3 +1,19 @@
+import StatsSection from "../components/StatsSection";
+import HeroSection from "../components/HeroSection.jsX";
+import FeaturesSection from "../components/FeaturesSection";
+
 export default function Home() {
-  return <h1 className="text-2xl font-semibold">Welcome to Riwaq</h1>
+  return (
+    <div>
+      <div>
+        <HeroSection />
+      </div>
+      <div>
+        <StatsSection />
+      </div>
+      <div>
+        <FeaturesSection />
+      </div>
+    </div>
+  );
 }
