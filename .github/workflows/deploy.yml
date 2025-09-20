@@ -8,6 +8,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # This is the key line
+      pages: write    # For gh-pages deployments
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
