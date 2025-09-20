@@ -28,12 +28,12 @@ export default function App() {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Riwaq">
       <Navbar />
       <main className="pt-[var(--nav-h)]">
         <div className="min-h-[calc(100svh-var(--nav-h))] bg-gray-50">
           <Routes>
-            <Route path="/Riwaq" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="reset" element={<Reset />} />
