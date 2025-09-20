@@ -8,6 +8,9 @@ import Navbar from "./components/Navbar";
 import { useSelector } from "react-redux";
 import { selectIsAuthInitialized } from "./features/auth/authSlice";
 import Reset from "./pages/Reset";
+import BlogPage from "./pages/BlogPage";
+import BlogDetails from "./pages/BlogDetails";
+import CourseDetails from "./pages/CourseDetails";
 import NotFound from "./pages/NotFound";
 import Forbidden from "./pages/Forbidden";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -37,6 +40,10 @@ export default function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="reset" element={<Reset />} />
+            <Route path="blog" element={<BlogPage />} />
+            <Route path="details" element={<BlogDetails />} />
+            <Route path="course" element={<CourseDetails/>}/>
+            
 
             <Route
               path="dashboard"
@@ -61,6 +68,7 @@ export default function App() {
               <Route path="courses/new" element={<AdminCourseForm />} />
               <Route path="courses/:id/edit" element={<AdminCourseForm />} />
               <Route path="categories" element={<AdminCategories />} />
+             
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
