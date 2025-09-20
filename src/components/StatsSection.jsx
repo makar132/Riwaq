@@ -1,4 +1,4 @@
-import "./StatsSection.css";
+import "./statsSection.css";
 const stats = [
   { value: "15K+", label: "Students" },
   { value: "75%", label: "Total success" },

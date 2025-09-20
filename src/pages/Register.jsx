@@ -1,23 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { useFormik } from "formik";
+// src/pages/Register.jsx
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Eye, EyeOff } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  registerUser,
-  selectAuthErrorMessage,
-  selectAuthStatus,
-  clearAuthError,
-} from "../features/auth/authSlice";
+import AuthLayout from "../components/AuthLayout";
+import InputField from "../components/InputField";
+import PasswordField from "../components/PasswordField";
+import { useState, useEffect } from "react";
+import { useDispatch,  } from "react-redux";
+import { signUp,  clearAuthError } from "../features/auth/authSlice";
+import { Link, useNavigate } from "react-router-dom";
+
+const SignupSchema = Yup.object({
+  name: Yup.string().min(2, "Too short").required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
+  username: Yup.string().min(3, "Min 3 chars").required("Required"),
+  password: Yup.string().min(6, "Min 6 chars").required("Required"),
+  confirm: Yup.string()
+    .oneOf([Yup.ref("password")], "Passwords must match")
+    .required("Required"),
+  locale: Yup.string().oneOf(["en", "ar"]).required("Required"),
+});
 
 export default function Register() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [serverMsg, setServerMsg] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const status = useSelector(selectAuthStatus);
-  const errorMessage = useSelector(selectAuthErrorMessage);
+  // const error = useSelector(selectAuthError);
 
   useEffect(() => {
     return () => {
@@ -25,137 +32,86 @@ export default function Register() {
     };
   }, [dispatch]);
 
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      username: "",
-      password: "",
-    },
-    validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email address").required("Required"),
-      username: Yup.string().required("Required"),
-      password: Yup.string().min(6, "Password must be at least 6 characters").required("Required"),
-    }),
-    onSubmit: (values) => {
-      dispatch(registerUser(values));
-    },
-  });
+  const onSuccess = () => {
+    setServerMsg("Account created! You are now signed in.");
+    navigate("/", { replace: true });
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="bg-white shadow-md rounded-lg p-0 flex w-full max-w-5xl overflow-hidden">
-   
-        <div className="w-1/2 hidden md:block">
-          <img
-            src="/src/pages/images/Group 231.png"
-            alt="Register"
-            className="w-full h-full object-cover"
-          />
+    <AuthLayout
+      title="Create your account"
+      subtitle="Join and start learning today."
+      imageSrc="/register.svg"
+    >
+      {serverMsg && (
+        <div
+          role="status"
+          aria-live="polite"
+          className={`-mt-10 mb-3 rounded-lg px-3 py-2 text-sm ${
+            serverMsg.startsWith("Account created")
+              ? "bg-green-50 text-green-700"
+              : "bg-red-50 text-red-700"
+          }`}
+        >
+          {serverMsg}
         </div>
+      )}
 
-        <div className="w-full md:w-1/2 px-10 py-12">
-          <h2 className="text-center text-xl font-semibold mb-4">Welcome to lorem..!</h2>
+      <Formik
+        initialValues={{
+          name: "",
+          email: "",
+          username: "",
+          password: "",
+          confirm: "",
+          locale: "en",
+        }}
+        validationSchema={SignupSchema}
+        onSubmit={async (vals, { setSubmitting, setFieldError }) => {
+          setServerMsg(null);
+          const { confirm, ...payload } = vals;
 
-          {/* Toggle Buttons */}
-          <div className="flex justify-center mb-6">
-            <div className="flex bg-gray-200 rounded-full p-1">
-              <button
-                className="px-6 py-2 text-gray-600 hover:text-white hover:bg-[#49BBBD] rounded-full transition-all duration-200"
-                onClick={() => navigate("/login")}
-              >
-                Login
-              </button>
-              <button
-                className="px-6 py-2 bg-[#49BBBD] text-white rounded-full"
-                disabled
-              >
-                Register
-              </button>
-            </div>
-          </div>
+          const resultAction = await dispatch(signUp(payload));
+          setSubmitting(false);
 
-          <p className="text-center text-gray-500 text-sm mb-6">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          </p>
+          if (signUp.rejected.match(resultAction)) {
+            const err = resultAction.payload;
+            if (err?.fieldErrors) {
+              Object.entries(err.fieldErrors).forEach(([k, msg]) => {
+                setFieldError(k, msg);
+              });
+            }
+            setServerMsg(err?.message || "Signup failed.");
+          } else {
+            onSuccess();
+          }
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form className="space-y-6">
+            <InputField name="name" label="Full name" />
+            <InputField name="username" label="Username" />
+            <InputField name="email" label="Email" type="email" autoComplete="email" />
+            <PasswordField name="password" label="Password" />
+            <PasswordField name="confirm" label="Confirm password" />
 
-          <form onSubmit={formik.handleSubmit} className="space-y-4">
-            {/* Email */}
-            <div>
-              <label>Email Address</label>
-              <input
-                type="email"
-                name="email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
-                className="w-full border border-[#49BBBD] rounded-full px-4 py-2 focus:outline-none"
-                placeholder="Enter your Email Address"
-              />
-              {formik.touched.email && formik.errors.email && (
-                <div className="text-red-500 text-sm">{formik.errors.email}</div>
-              )}
-            </div>
-
-            {/* Username */}
-            <div>
-              <label>User name</label>
-              <input
-                type="text"
-                name="username"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.username}
-                className="w-full border border-[#49BBBD] rounded-full px-4 py-2 focus:outline-none"
-                placeholder="Enter your User name"
-              />
-              {formik.touched.username && formik.errors.username && (
-                <div className="text-red-500 text-sm">{formik.errors.username}</div>
-              )}
-            </div>
-
-            {/* Password */}
-            <div>
-              <label>Password</label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                  className="w-full border border-[#49BBBD] rounded-full px-4 py-2 focus:outline-none pr-10"
-                  placeholder="Enter your Password"
-                />
-                <span
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
-                >
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                </span>
-              </div>
-              {formik.touched.password && formik.errors.password && (
-                <div className="text-red-500 text-sm">{formik.errors.password}</div>
-              )}
-            </div>
-
-            {/* Error */}
-            {errorMessage && (
-              <div className="text-red-600 text-sm text-center">{errorMessage}</div>
-            )}
-
-            {/* Submit Button */}
             <button
               type="submit"
-              disabled={status === "loading"}
-              className={`w-full bg-[#49BBBD] text-white py-2 rounded-full ${
-                status === "loading" ? "opacity-60 cursor-not-allowed" : ""
-              }`}
+              disabled={isSubmitting}
+              className="inline-flex w-full items-center justify-center rounded-2xl bg-blue-400 px-4 py-3.5 text-[17px] font-semibold text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-600 focus:outline-none disabled:opacity-60"
             >
-              {status === "loading" ? "Registering..." : "Register"}
+              {isSubmitting ? "Creating…" : "Create Account"}
             </button>
-          </form>
-        </div>
-      </div>
-    </div>
+
+            <p className="text-sm text-gray-600">
+              Already have an account?{" "}
+              <Link to="/login" className="font-medium text-blue-600 hover:text-blue-700">
+                Sign in
+              </Link>
+            </p>
+          </Form>
+        )}
+      </Formik>
+    </AuthLayout>
   );
 }
