@@ -44,7 +44,7 @@ export default function Login() {
       from="from-[#49BBBD]"
       via="via-[#36A2A4]"
       to="to-[#2F7E80]"
-      imageSrc="/login.svg"
+      imageSrc="login.svg"
       brandName="Riwaq"
     >
       {serverMsg && (

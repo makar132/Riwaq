@@ -39,7 +39,7 @@ export default function Register() {
     <AuthLayout
       title="Create your account"
       subtitle="Join and start learning today."
-      imageSrc="/register.svg"
+      imageSrc="register.svg"
     >
       {serverMsg && (
         <div
