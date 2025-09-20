@@ -6,6 +6,7 @@ import { signOut, selectCurrentUser } from "../features/auth/authSlice";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 
+
 export default function Navbar() {
   const { t } = useTranslation();
   const user = useSelector(selectCurrentUser);
@@ -25,7 +26,8 @@ export default function Navbar() {
   const mainLinks = [
     { label: t("nav.home"), path: "/" },
     { label: t("nav.courses"), path: "/courses" },
-    { label: t("nav.careers"), path: "/careers" },
+    { label: "BlogDetails", path: "/details" },
+    { label: "CourseDetails", path: "/course" },
     { label: t("nav.blog"), path: "/blog" },
     { label: t("nav.about"), path: "/about" },
     ...(user?.isAdmin ? [{ label: t("nav.admin"), path: "/admin" }] : []),
