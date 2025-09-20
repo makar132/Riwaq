@@ -1,4 +1,3 @@
-// components/ActionButton.jsx
 export default function ActionButton({ type }) {
   if (type === "join") {
     return (

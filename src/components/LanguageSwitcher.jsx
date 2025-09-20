@@ -29,7 +29,9 @@ export default function LanguageSwitcher({ className = "" }) {
           await updateDoc(doc(db, "users", user.uid), {
             "preferences.locale": next,
           });
-        } catch {}
+        } catch {
+          // ignore
+        }
       }
     }
     setLang(next);

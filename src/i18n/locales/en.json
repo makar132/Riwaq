@@ -10,6 +10,8 @@
   },
   "auth": {
     "login": "Login",
+    "login_title": "Login",
+    "login_subtitle": "Login to continue",
     "register": "Sign Up",
     "logout": "Logout",
     "email_username": "Email or Username",

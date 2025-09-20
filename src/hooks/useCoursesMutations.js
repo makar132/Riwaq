@@ -15,7 +15,6 @@ export function useAddCourse() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (newCourse) => {
-      // keep title_lc & createdAt in sync here
       const payload = {
         ...newCourse,
         title_lc: (newCourse.title || "").toLowerCase(),
@@ -24,12 +23,10 @@ export function useAddCourse() {
       return addDoc(collection(db, "courses"), payload);
     },
     onSuccess: (ref) => {
-      // list + counts
       qc.invalidateQueries({ queryKey: [COURSES_QUERY_KEY] });
       qc.invalidateQueries({ queryKey: ["coursesSorted"] });
       qc.invalidateQueries({ queryKey: ["count", "courses", "total"] });
       qc.invalidateQueries({ queryKey: ["count", "courses", "published"] });
-      // detail for new id (if you navigate to /edit/:id later)
       if (ref?.id) qc.invalidateQueries({ queryKey: ["course", ref.id] });
     },
   });

@@ -15,13 +15,11 @@ export default function NotFound() {
         text-white
       "
     >
-      {/* soft blobs (no horizontal scroll) */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
         <div className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
       </div>
 
-      {/* centered content. no nested scroller; window will scroll if ever needed */}
       <div className="mx-auto flex min-h-[inherit] w-full max-w-7xl items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-md text-center">
           <h1

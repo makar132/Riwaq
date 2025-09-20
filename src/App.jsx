@@ -21,7 +21,6 @@ export default function App() {
   const isInitialized = useSelector(selectIsAuthInitialized);
 
   if (!isInitialized) {
-    // return <div className="p-4 text-sm text-gray-600">Loading…</div>;
     <div className="flex h-screen items-center justify-center">
       <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900" />
       <p>Loading…</p>
@@ -30,9 +29,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      {/* Use 100svh for mobile-safe viewport; min-h-0 lets children shrink */}
-      <Navbar /> {/* fixed h-16 (make sure Navbar has h-16) */}
-      {/* Main must have min-h-0 to allow overflow; pt-16 offsets fixed navbar */}
+      <Navbar />
       <main className="pt-[var(--nav-h)]">
         <div className="min-h-[calc(100svh-var(--nav-h))] bg-gray-50">
           <Routes>
@@ -51,47 +48,6 @@ export default function App() {
             />
             <Route path="courses" element={<Courses />} />
             <Route path="403" element={<Forbidden />} />
-            {/* <Route
-              path="/admin"
-              element={
-                <ProtectedRoute requireAdmin>
-                  <AdminDashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/courses"
-              element={
-                <ProtectedRoute requireAdmin>
-                  <AdminCourses />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/courses/new"
-              element={
-                <ProtectedRoute requireAdmin>
-                  <AdminCourseForm />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/courses/:id/edit"
-              element={
-                <ProtectedRoute requireAdmin>
-                  <AdminCourseForm />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/categories"
-              element={
-                <ProtectedRoute requireAdmin>
-                  <AdminCategories />
-                </ProtectedRoute>
-              }
-            />
- */}
             <Route
               path="/admin"
               element={

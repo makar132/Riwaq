@@ -1,4 +1,3 @@
-// src/pages/Courses.jsx (public list)
 import { useState, useMemo } from "react";
 import { FiSearch, FiArrowUp, FiArrowDown } from "react-icons/fi";
 import { useCoursesSorted } from "../hooks/useCoursesSorted";

@@ -1,7 +1,6 @@
-// src/hooks/useCounts.js
 import { useQuery } from "@tanstack/react-query";
 import { collection, query, where, getCountFromServer } from "firebase/firestore";
-import { db } from "../firebase"; // adjust path
+import { db } from "../firebase";
 
 export function useCoursesCount() {
   return useQuery({

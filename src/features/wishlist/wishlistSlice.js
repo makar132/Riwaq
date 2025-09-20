@@ -2,10 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { db } from "../../firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
+//---Utils ---
 const KEY = "wishlist";
 const readLS = () => JSON.parse(localStorage.getItem(KEY) || "[]");
 const writeLS = (v) => localStorage.setItem(KEY, JSON.stringify(v));
 
+//--- Thunks ---
 export const syncWishlist = createAsyncThunk(
   "wishlist/sync",
   async ({ uid }, { getState }) => {
@@ -29,6 +31,7 @@ export const pushWishlist = createAsyncThunk(
   },
 );
 
+//--- Slice ---
 const slice = createSlice({
   name: "wishlist",
   initialState: { items: readLS() },
@@ -48,5 +51,7 @@ const slice = createSlice({
     });
   },
 });
+
+//--- Selectors ---
 export const { toggle } = slice.actions;
 export default slice.reducer;

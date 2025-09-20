@@ -1,5 +1,3 @@
-// InfoCard.jsx
-
 const cardTypes = {
   notification: {
     bgColor: "bg-white/65",

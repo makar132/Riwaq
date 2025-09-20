@@ -6,7 +6,7 @@ export default function PasswordField({
   name,
   label = "Password",
   placeholder,
-  autoComplete = "current-password", // or 'new-password'
+  autoComplete = "current-password",
 }) {
   const [show, setShow] = useState(false);
   const toggle = () => setShow((v) => !v);
