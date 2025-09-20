@@ -30,3 +30,6 @@ coverage
 
 
 serviceAccountKey.json
+
+scripts
+scripts/*

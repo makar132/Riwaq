@@ -1,4 +1,3 @@
-// src/components/FeaturesSection.jsx
 import FeatureCard from "./FeatureCard";
 import IconBilling from "../assets/icon-billing.svg";
 import IconCalendar from "../assets/icon-calendar.svg";

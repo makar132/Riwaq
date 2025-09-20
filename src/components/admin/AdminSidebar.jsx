@@ -1,16 +1,9 @@
 import { NavLink } from "react-router-dom";
-import {
-  FiHome,
-  FiBookOpen,
-  FiPlusCircle,
-  FiTag,
-} from "react-icons/fi";
+import { FiHome, FiBookOpen, FiPlusCircle, FiTag } from "react-icons/fi";
 import { createPortal } from "react-dom";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-/** Hover/focus tooltip rendered to document.body, positioned via getBoundingClientRect */
 function PortalTooltip({ open, label, x, y, onClose }) {
-  // close on Escape
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === "Escape" && onClose?.();
@@ -22,7 +15,6 @@ function PortalTooltip({ open, label, x, y, onClose }) {
   return createPortal(
     <div
       role="tooltip"
-      // fixed so it ignores parent overflow/stacking; super-high z to be safe
       className={[
         "pointer-events-none fixed z-[9999] select-none",
         "rounded-md bg-gray-900 px-2 py-1 text-xs font-medium text-white shadow-lg",
@@ -31,20 +23,18 @@ function PortalTooltip({ open, label, x, y, onClose }) {
       style={{
         left: x,
         top: y,
-        transform: "translate(8px, -50%)", // +8px gap, center vertically
+        transform: "translate(8px, -50%)",
       }}
     >
       {label}
     </div>,
-    document.body
+    document.body,
   );
 }
 
-/* Hover color refinement (brand tint) */
 const linkBase =
   "relative group flex items-center gap-3 rounded-lg px-2.5 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#49BBBD]/40";
-const linkActive =
-  "bg-[#49BBBD]/10 text-[#2F7E80] ring-1 ring-[#49BBBD]/30";
+const linkActive = "bg-[#49BBBD]/10 text-[#2F7E80] ring-1 ring-[#49BBBD]/30";
 const linkIdle = "text-gray-700 hover:bg-[#49BBBD]/5";
 
 export default function AdminSidebar({ onNavigate, collapsed = false }) {
@@ -77,7 +67,7 @@ export default function AdminSidebar({ onNavigate, collapsed = false }) {
       { to: "/admin/courses/new", label: "New Course", icon: <FiPlusCircle /> },
       { to: "/admin/categories", label: "Categories", icon: <FiTag /> },
     ],
-    []
+    [],
   );
 
   return (
@@ -89,8 +79,12 @@ export default function AdminSidebar({ onNavigate, collapsed = false }) {
         </div>
         {!collapsed && (
           <div className="min-w-0">
-            <div className="truncate text-sm font-semibold text-gray-900">Admin</div>
-            <div className="truncate text-[11px] text-gray-500">TOTC eLearning</div>
+            <div className="truncate text-sm font-semibold text-gray-900">
+              Admin
+            </div>
+            <div className="truncate text-[11px] text-gray-500">
+              TOTC eLearning
+            </div>
           </div>
         )}
       </div>
@@ -109,25 +103,29 @@ export default function AdminSidebar({ onNavigate, collapsed = false }) {
         ))}
       </nav>
 
-      {/* Footer / Hint */}
-      <div className="mt-auto border-t border-gray-200 px-3 py-3 text-xs text-gray-500">
-        {!collapsed ? (
-          <div>
-            Height: <code>calc(100svh - var(--nav-h))</code>
-          </div>
-        ) : (
-          <div className="text-center">⋯</div>
-        )}
-      </div>
-
       {/* One portal tooltip for all items */}
-      <PortalTooltip open={tip.open && collapsed} label={tip.label} x={tip.x} y={tip.y} onClose={() => setTip({ ...tip, open: false })} />
+      <PortalTooltip
+        open={tip.open && collapsed}
+        label={tip.label}
+        x={tip.x}
+        y={tip.y}
+        onClose={() => setTip({ ...tip, open: false })}
+      />
     </div>
   );
 }
 
 /** Active indicator strip + portal tooltip triggers when collapsed */
-function SideLink({ to, end, onNavigate, collapsed, label, icon, onShowTip, onHideTip }) {
+function SideLink({
+  to,
+  end,
+  onNavigate,
+  collapsed,
+  label,
+  icon,
+  onShowTip,
+  onHideTip,
+}) {
   const ref = useRef(null);
 
   const handleEnter = () => {
@@ -159,7 +157,7 @@ function SideLink({ to, end, onNavigate, collapsed, label, icon, onShowTip, onHi
           linkBase,
           isActive
             ? // Active: left strip + brand ring
-              "pl-3 before:absolute before:left-0 before:top-1/2 before:h-5 before:w-0.5 before:-translate-y-1/2 before:rounded-full before:bg-[#49BBBD] " +
+              "pl-3 before:absolute before:top-1/2 before:left-0 before:h-5 before:w-0.5 before:-translate-y-1/2 before:rounded-full before:bg-[#49BBBD] " +
               linkActive
             : linkIdle,
           collapsed ? "justify-center pl-0" : "",

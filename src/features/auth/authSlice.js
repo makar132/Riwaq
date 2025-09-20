@@ -1,4 +1,3 @@
-// src/features/auth/authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { auth, db } from "../../firebase";
 import {
@@ -160,4 +159,3 @@ export default slice.reducer;
 // --- Selectors ---
 export const selectCurrentUser = (s) => s.auth.user;
 export const selectIsAuthInitialized = (s) => s.auth.isInitialized;
-// export const selectAuthError = (s) => s.auth.error;

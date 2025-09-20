@@ -1,4 +1,3 @@
-// src/pages/Login.jsx
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import AuthLayout from "../components/AuthLayout";
@@ -23,7 +22,6 @@ export default function Login() {
   const { t } = useTranslation();
 
   const [serverMsg, setServerMsg] = useState(null);
-  // const error = useSelector(selectAuthError);
   const user = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
@@ -90,10 +88,12 @@ export default function Login() {
             />
 
             <div>
-              <div className="flex items-center justify-between">
-                {/* <label className="block text-[0.95rem] font-medium text-gray-800">
-                  Password
-                </label> */}
+              <PasswordField
+                name="password"
+                autoComplete="current-password"
+                label={t("auth.password")}
+              />
+              <div className="flex w-full items-end justify-end">
                 <Link
                   to="/reset"
                   className="text-sm text-blue-600 hover:text-blue-700"
@@ -101,11 +101,6 @@ export default function Login() {
                   {t("auth.forgot")}
                 </Link>
               </div>
-              <PasswordField
-                name="password"
-                autoComplete="current-password"
-                label={t("auth.password")}
-              />
             </div>
 
             <button

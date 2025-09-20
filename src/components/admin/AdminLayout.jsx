@@ -3,25 +3,12 @@ import { Outlet } from "react-router-dom";
 import { FiMenu, FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 import AdminSidebar from "./AdminSidebar";
 
-const LS_KEY = "admin.sidebar.collapsed";
 
 export default function AdminLayout() {
-  const [collapsed, setCollapsed] = useState(() => {
-    try {
-      return localStorage.getItem(LS_KEY) === "1";
-    } catch {
-      return false;
-    }
-  });
+  const [collapsed, setCollapsed] = useState(() => {false});
   const [mobileOpen, setMobileOpen] = useState(false);
   const firstFocusableRef = useRef(null);
 
-  // persist collapsed state
-  useEffect(() => {
-    try {
-      localStorage.setItem(LS_KEY, collapsed ? "1" : "0");
-    } catch {}
-  }, [collapsed]);
 
   // close mobile drawer on Esc
   useEffect(() => {
@@ -41,8 +28,7 @@ export default function AdminLayout() {
   }, [mobileOpen]);
 
   return (
-    <div className="h-[calc(100svh-var(--nav-h))] bg-gray-50">
-      {/* isolate = new stacking context so z-index behaves predictably */}
+    <div className="h-[calc(100svh-var(--nav-h))] mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 bg-gray-50">
       <div className="flex h-full min-h-0 isolate">
         {/* Sidebar (desktop) */}
         <aside
@@ -66,7 +52,6 @@ export default function AdminLayout() {
               </button>
             </div>
 
-            {/* allow horizontal overflow so tooltips can escape the rail */}
             <div className="min-h-0 flex-1 overflow-y-auto overflow-x-visible">
               <AdminSidebar collapsed={collapsed} onNavigate={() => {}} />
             </div>

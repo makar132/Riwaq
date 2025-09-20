@@ -1,4 +1,3 @@
-// src/pages/Register.jsx
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import AuthLayout from "../components/AuthLayout";
@@ -24,7 +23,6 @@ export default function Register() {
   const [serverMsg, setServerMsg] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const error = useSelector(selectAuthError);
 
   useEffect(() => {
     return () => {
@@ -69,7 +67,7 @@ export default function Register() {
         validationSchema={SignupSchema}
         onSubmit={async (vals, { setSubmitting, setFieldError }) => {
           setServerMsg(null);
-          const { confirm, ...payload } = vals;
+          const { Confirm, ...payload } = vals;
 
           const resultAction = await dispatch(signUp(payload));
           setSubmitting(false);
