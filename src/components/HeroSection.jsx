@@ -31,7 +31,7 @@ export default function HeroSection() {
           {/* 👤 Student Image */}
           <div className="rotate-[2deg]">
             <img
-              src="/src/pages/images/2f32d3a9082c2e2832481561feec93a5e5c5e8d6.png"
+              src="hero-section-1.png"
               alt="Student"
               className="relative z-10 h-150 w-200"
             />
@@ -48,7 +48,7 @@ export default function HeroSection() {
           {/* 🔔 Notification */}
           <InfoCard
             type="notification"
-            image="/src/pages/images/p1.jpg"
+            image="p1.jpg"
             title="User Experience Class"
             subtitle="Today at 12.00 PM"
             hasButton

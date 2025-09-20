@@ -27,7 +27,7 @@ export default function Reset() {
     <AuthLayout
       title="Reset your password"
       subtitle="We’ll send a password reset link to your email."
-      imageSrc="/reset-password.svg"
+      imageSrc="reset-password.svg"
     >
       {serverMsg && (
         <div
