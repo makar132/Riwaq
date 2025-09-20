@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { logoutUser } from "../features/auth/authSlice";
 import { FiMenu, FiX } from "react-icons/fi";
+import footerLogo from "/src/assets/footerLogo.svg";
 
 export default function Navbar({ user, dispatch }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,32 +11,31 @@ export default function Navbar({ user, dispatch }) {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full bg-[#49BBBD] text-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 text-2xl font-semibold">
+    <header className="fixed top-0 left-0 z-50 w-full bg-[#49bbbd] pr-5 pl-5 text-white">
+      <nav className="PX-3 mx-auto flex max-w-7xl items-center justify-between py-4 md:py-1">
         {/* Logo */}
-        <NavLink to="/" className="text-4xl font-bold text-white">
-          <span className="rounded-md bg-white px-2 py-1 font-bold text-[#49BBBD]">
-            TOTC
-          </span>
+        <NavLink to="/" className="flex items-center space-x-3">
+          <img
+            src={footerLogo}
+            alt="TOTC Logo"
+            className="h-17 w-17 object-contain brightness-0 invert"
+          />
         </NavLink>
 
-        {/* Hamburger Icon (Mobile) */}
+        {/* Hamburger Icon (Mobile only) */}
         <div className="md:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-2xl text-white focus:outline-none"
-          >
+          <button onClick={toggleMenu} className="text-2xl focus:outline-none">
             {menuOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
 
         {/* Nav Links */}
         <div
-          className={`text-md absolute top-16 left-0 z-50 w-full flex-col gap-6 bg-[#49BBBD] p-4 font-medium transition-all duration-300 ease-in-out md:static md:flex md:w-auto md:flex-row md:items-center md:bg-transparent md:p-0 ${
+          className={`${
             menuOpen ? "flex" : "hidden"
-          }`}
+          } absolute top-[100%] left-0 z-40 w-full flex-col items-center space-y-4 bg-[#49bbbd] px-4 py-6 text-lg shadow-lg transition-all duration-300 ease-in-out md:static md:flex md:w-auto md:flex-row md:items-center md:space-y-0 md:space-x-6 md:bg-transparent md:px-0 md:py-0 md:shadow-none`}
         >
-          {/* Nav Item Component */}
+          {/* Static Links */}
           {[
             { label: "Home", path: "/" },
             { label: "Courses", path: "/courses" },
@@ -48,7 +48,11 @@ export default function Navbar({ user, dispatch }) {
               to={path}
               onClick={closeMenu}
               className={({ isActive }) =>
-                `group relative inline-block px-1 py-0.5 font-medium transition ${isActive ? "text-white after:scale-x-100" : "text-white/80 after:scale-x-0"} after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-left after:bg-white after:transition-transform after:duration-300 hover:after:scale-x-100`
+                `group relative inline-block px-1 py-0.5 font-medium transition ${
+                  isActive
+                    ? "text-white after:scale-x-100"
+                    : "text-white/80 after:scale-x-0"
+                } after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-left after:bg-white after:transition-transform after:duration-300 hover:after:scale-x-100`
               }
             >
               {label}
@@ -62,9 +66,9 @@ export default function Navbar({ user, dispatch }) {
                 to="/login"
                 onClick={closeMenu}
                 className={({ isActive }) =>
-                  `rounded-full px-5 py-2 font-semibold transition hover:opacity-90 ${
+                  `rounded-full px-5 py-2 text-base font-semibold transition hover:opacity-90 ${
                     isActive
-                      ? "bg-white text-[#49BBBD]"
+                      ? "bg-white text-[#4B3C7A]"
                       : "bg-white/20 text-white backdrop-blur-md"
                   }`
                 }
@@ -76,9 +80,9 @@ export default function Navbar({ user, dispatch }) {
                 to="/register"
                 onClick={closeMenu}
                 className={({ isActive }) =>
-                  `rounded-full px-5 py-2 font-semibold transition hover:opacity-90 ${
+                  `rounded-full px-5 py-2 text-base font-semibold transition hover:opacity-90 ${
                     isActive
-                      ? "bg-white text-[#49BBBD]"
+                      ? "bg-white text-[#4B3C7A]"
                       : "bg-white/20 text-white backdrop-blur-md"
                   }`
                 }
@@ -88,14 +92,18 @@ export default function Navbar({ user, dispatch }) {
             </>
           ) : (
             <>
-              <span className="text-sm text-white">{user.email}</span>
+              <span className="text-sm">{user.email}</span>
 
               {user.isAdmin && (
                 <NavLink
                   to="/dashboard"
                   onClick={closeMenu}
                   className={({ isActive }) =>
-                    `group relative inline-block px-1 py-0.5 font-medium transition ${isActive ? "text-white after:scale-x-100" : "text-white/80 after:scale-x-0"} after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-left after:bg-white after:transition-transform after:duration-300 hover:after:scale-x-100`
+                    `group relative inline-block px-1 py-0.5 font-medium transition ${
+                      isActive
+                        ? "text-white after:scale-x-100"
+                        : "text-white/80 after:scale-x-0"
+                    } after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-left after:bg-white after:transition-transform after:duration-300 hover:after:scale-x-100`
                   }
                 >
                   Dashboard

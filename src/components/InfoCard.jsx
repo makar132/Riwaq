@@ -1,5 +1,3 @@
-// InfoCard.jsx
-
 const cardTypes = {
   notification: {
     bgColor: "bg-white/65",
@@ -35,7 +33,7 @@ const cardTypes = {
 };
 
 export default function InfoCard({
-  type = "notification",
+  type = "notification", // or "promo"
   image,
   icon,
   title,
@@ -46,18 +44,46 @@ export default function InfoCard({
   className = "",
   bgColor,
   iconBg,
+  promo = false, //  NEW: promo mode
+  overlayColor = "bg-black/40",
+  buttonBg = "bg-[#49BBBD]",
+  buttonTextColor = "text-white",
 }) {
   const settings = cardTypes[type] || {};
   const finalBg = bgColor || settings.bgColor;
   const finalIconBg = iconBg || settings.iconBg;
   const finalIcon = icon || settings.icon;
 
+  //  Promo Mode (with background image)
+  if (promo) {
+    return (
+      <div
+        className={`relative overflow-hidden rounded-xl shadow-md ${className}`}
+      >
+        <img src={image} alt={title} className="h-full w-full object-cover" />
+        <div
+          className={`absolute inset-0 ${overlayColor} flex flex-col items-center justify-center p-6 text-center`}
+        >
+          <h3 className="mb-3 text-xl font-bold text-white">{title}</h3>
+          {buttonText && (
+            <button
+              onClick={onClick}
+              className={`rounded-full px-6 py-2 text-sm font-semibold ${buttonBg} ${buttonTextColor} transition hover:opacity-40`}
+            >
+              {buttonText}
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  //    Default Mode
   return (
     <div
       className={`rounded-xl p-4 text-[#333] shadow-xl backdrop-blur-md ${finalBg} ${className}`}
     >
       <div className="flex items-center gap-3">
-        {/* 👤 Notification image */}
         {type === "notification" && image && (
           <img
             src={image}
@@ -66,7 +92,6 @@ export default function InfoCard({
           />
         )}
 
-        {/* 🔔 Icon for stat/congratulations */}
         {type !== "notification" && finalIcon && (
           <div
             className="text-md flex h-10 w-10 items-center justify-center rounded-md text-white"
@@ -76,7 +101,6 @@ export default function InfoCard({
           </div>
         )}
 
-        {/* 📝 Title & subtitle */}
         <div>
           <p className="leading-none font-semibold">{title}</p>
           {subtitle && (
@@ -87,7 +111,6 @@ export default function InfoCard({
         </div>
       </div>
 
-      {/* 🎯 Optional button */}
       {hasButton && buttonText && (
         <button
           onClick={onClick}

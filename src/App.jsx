@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"; // ✅ استيراد الفوتر
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -31,12 +32,12 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-50">
-        {/* Navbar المثبتة */}
+      <div className="flex min-h-screen flex-col bg-gray-50">
+        {/* ✅ Navbar */}
         <Navbar user={user} dispatch={dispatch} />
 
-        {/* محتوى الصفحة مع padding علشان الن navbar الثابت */}
-        <main>
+        {/* ✅ المحتوى الرئيسي */}
+        <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="login" element={<Login />} />
@@ -59,6 +60,9 @@ export default function App() {
             />
           </Routes>
         </main>
+
+        {/* ✅ Footer */}
+        <Footer />
       </div>
     </BrowserRouter>
   );

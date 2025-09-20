@@ -1,8 +1,7 @@
-// HeroSection.jsx
-
 import ActionButton from "./ActionButton";
 import InfoCard from "./InfoCard";
-
+import p2 from "../assets/images/p2.png";
+import p1 from "../assets/images/p1.jpg";
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-[#49bbbd] pt-15 text-white">
@@ -32,11 +31,7 @@ export default function HeroSection() {
         <div className="relative mb-10 w-full max-w-sm sm:max-w-md md:mb-0 md:w-1/2 md:max-w-md lg:max-w-lg">
           {/* 👤 Student Image */}
           <div className="rotate-[2deg]">
-            <img
-              src="/src/pages/images/2f32d3a9082c2e2832481561feec93a5e5c5e8d6.png"
-              alt="Student"
-              className="relative z-10 h-150 w-200"
-            />
+            <img src={p2} alt="Student" className="relative z-10 h-150 w-200" />
           </div>
 
           {/* 🧾 CardStat */}
@@ -50,7 +45,7 @@ export default function HeroSection() {
           {/* 🔔 Notification */}
           <InfoCard
             type="notification"
-            image="/src/pages/images/p1.jpg"
+            image={p1}
             title="User Experience Class"
             subtitle="Today at 12.00 PM"
             hasButton

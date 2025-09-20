@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
+import Group from "../assets/images/Group.png";
 import * as Yup from "yup";
 import { Eye, EyeOff } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,7 +35,9 @@ export default function Register() {
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid email address").required("Required"),
       username: Yup.string().required("Required"),
-      password: Yup.string().min(6, "Password must be at least 6 characters").required("Required"),
+      password: Yup.string()
+        .min(6, "Password must be at least 6 characters")
+        .required("Required"),
     }),
     onSubmit: (values) => {
       dispatch(registerUser(values));
@@ -42,31 +45,34 @@ export default function Register() {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="bg-white shadow-md rounded-lg p-0 flex w-full max-w-5xl overflow-hidden">
-   
-        <div className="w-1/2 hidden md:block">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 pt-24">
+      <div className="flex w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-lg md:flex-row">
+        {/* Left Image */}
+        <div className="hidden md:block md:w-1/2">
           <img
-            src="/src/pages/images/Group 231.png"
+            src={Group}
             alt="Register"
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
 
-        <div className="w-full md:w-1/2 px-10 py-12">
-          <h2 className="text-center text-xl font-semibold mb-4">Welcome to lorem..!</h2>
+        {/* Right Form */}
+        <div className="w-full px-6 py-12 sm:px-10 md:w-1/2">
+          <h2 className="mb-4 text-center text-2xl font-bold text-[#49BBBD]">
+            Welcome to lorem..!
+          </h2>
 
           {/* Toggle Buttons */}
-          <div className="flex justify-center mb-6">
-            <div className="flex bg-gray-200 rounded-full p-1">
+          <div className="mb-6 flex justify-center">
+            <div className="flex rounded-full bg-gray-200 p-1">
               <button
-                className="px-6 py-2 text-gray-600 hover:text-white hover:bg-[#49BBBD] rounded-full transition-all duration-200"
+                className="rounded-full px-6 py-2 text-gray-600 transition-all duration-200 hover:bg-[#49BBBD] hover:text-white"
                 onClick={() => navigate("/login")}
               >
                 Login
               </button>
               <button
-                className="px-6 py-2 bg-[#49BBBD] text-white rounded-full"
+                className="rounded-full bg-[#49BBBD] px-6 py-2 text-white"
                 disabled
               >
                 Register
@@ -74,48 +80,55 @@ export default function Register() {
             </div>
           </div>
 
-          <p className="text-center text-gray-500 text-sm mb-6">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          <p className="mb-6 text-center text-sm text-gray-500">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry.
           </p>
 
           <form onSubmit={formik.handleSubmit} className="space-y-4">
             {/* Email */}
             <div>
-              <label>Email Address</label>
+              <label className="mb-1 block text-sm font-medium">
+                Email Address
+              </label>
               <input
                 type="email"
                 name="email"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
-                className="w-full border border-[#49BBBD] rounded-full px-4 py-2 focus:outline-none"
+                className="w-full rounded-full border border-[#49BBBD] px-4 py-2 focus:ring-2 focus:ring-[#49BBBD] focus:outline-none"
                 placeholder="Enter your Email Address"
               />
               {formik.touched.email && formik.errors.email && (
-                <div className="text-red-500 text-sm">{formik.errors.email}</div>
+                <div className="text-sm text-red-500">
+                  {formik.errors.email}
+                </div>
               )}
             </div>
 
             {/* Username */}
             <div>
-              <label>User name</label>
+              <label className="mb-1 block text-sm font-medium">Username</label>
               <input
                 type="text"
                 name="username"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.username}
-                className="w-full border border-[#49BBBD] rounded-full px-4 py-2 focus:outline-none"
-                placeholder="Enter your User name"
+                className="w-full rounded-full border border-[#49BBBD] px-4 py-2 focus:ring-2 focus:ring-[#49BBBD] focus:outline-none"
+                placeholder="Enter your Username"
               />
               {formik.touched.username && formik.errors.username && (
-                <div className="text-red-500 text-sm">{formik.errors.username}</div>
+                <div className="text-sm text-red-500">
+                  {formik.errors.username}
+                </div>
               )}
             </div>
 
             {/* Password */}
             <div>
-              <label>Password</label>
+              <label className="mb-1 block text-sm font-medium">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -123,32 +136,38 @@ export default function Register() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
-                  className="w-full border border-[#49BBBD] rounded-full px-4 py-2 focus:outline-none pr-10"
+                  className="w-full rounded-full border border-[#49BBBD] px-4 py-2 pr-10 focus:ring-2 focus:ring-[#49BBBD] focus:outline-none"
                   placeholder="Enter your Password"
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
+                  className="absolute top-1/2 right-3 -translate-y-1/2 transform cursor-pointer text-gray-500"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </span>
               </div>
               {formik.touched.password && formik.errors.password && (
-                <div className="text-red-500 text-sm">{formik.errors.password}</div>
+                <div className="text-sm text-red-500">
+                  {formik.errors.password}
+                </div>
               )}
             </div>
 
-            {/* Error */}
+            {/* Error Message */}
             {errorMessage && (
-              <div className="text-red-600 text-sm text-center">{errorMessage}</div>
+              <div className="text-center text-sm text-red-600">
+                {errorMessage}
+              </div>
             )}
 
             {/* Submit Button */}
             <button
               type="submit"
               disabled={status === "loading"}
-              className={`w-full bg-[#49BBBD] text-white py-2 rounded-full ${
-                status === "loading" ? "opacity-60 cursor-not-allowed" : ""
+              className={`w-full rounded-full bg-[#49BBBD] py-2 font-semibold text-white transition-all duration-200 ${
+                status === "loading"
+                  ? "cursor-not-allowed opacity-60"
+                  : "hover:bg-[#3ca6a8]"
               }`}
             >
               {status === "loading" ? "Registering..." : "Register"}

@@ -10,7 +10,7 @@ const stats = [
 const StatsSection = () => {
   return (
     <section className="bg-white px-4 py-16 text-center md:px-8">
-      {/* العنوان والوصف */}
+      {/* title  and describtion*/}
       <h2 className="mb-4 text-4xl font-extrabold text-gray-900 md:text-4xl">
         Our Success
       </h2>
@@ -20,7 +20,7 @@ const StatsSection = () => {
         eu ornare tristique vel nisl orci.
       </p>
 
-      {/* الإحصائيات */}
+      {/*statstics*/}
       <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-3 md:grid-cols-5">
         {stats.map((stat, index) => (
           <div key={index}>
@@ -32,7 +32,7 @@ const StatsSection = () => {
         ))}
       </div>
 
-      {/* الفقرة الأخيرة */}
+      {/* the lastqout */}
       <div className="mt-16">
         <h3 className="text-xl font-bold md:text-3xl">
           <span className="text-gray-800">All-In-One </span>
