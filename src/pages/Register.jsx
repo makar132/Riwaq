@@ -1,24 +1,36 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import Group from "../assets/images/Group.png";
+=======
+// src/pages/Register.jsx
+import { Formik, Form } from "formik";
+>>>>>>> origin/main
 import * as Yup from "yup";
-import { Eye, EyeOff } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import {
-  registerUser,
-  selectAuthErrorMessage,
-  selectAuthStatus,
-  clearAuthError,
-} from "../features/auth/authSlice";
+import AuthLayout from "../components/AuthLayout";
+import InputField from "../components/InputField";
+import PasswordField from "../components/PasswordField";
+import { useState, useEffect } from "react";
+import { useDispatch,  } from "react-redux";
+import { signUp,  clearAuthError } from "../features/auth/authSlice";
+import { Link, useNavigate } from "react-router-dom";
+
+const SignupSchema = Yup.object({
+  name: Yup.string().min(2, "Too short").required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
+  username: Yup.string().min(3, "Min 3 chars").required("Required"),
+  password: Yup.string().min(6, "Min 6 chars").required("Required"),
+  confirm: Yup.string()
+    .oneOf([Yup.ref("password")], "Passwords must match")
+    .required("Required"),
+  locale: Yup.string().oneOf(["en", "ar"]).required("Required"),
+});
 
 export default function Register() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [serverMsg, setServerMsg] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const status = useSelector(selectAuthStatus);
-  const errorMessage = useSelector(selectAuthErrorMessage);
+  // const error = useSelector(selectAuthError);
 
   useEffect(() => {
     return () => {
@@ -26,6 +38,7 @@ export default function Register() {
     };
   }, [dispatch]);
 
+<<<<<<< HEAD
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -54,8 +67,34 @@ export default function Register() {
             alt="Register"
             className="h-full w-full object-cover"
           />
-        </div>
+=======
+  const onSuccess = () => {
+    setServerMsg("Account created! You are now signed in.");
+    navigate("/", { replace: true });
+  };
 
+  return (
+    <AuthLayout
+      title="Create your account"
+      subtitle="Join and start learning today."
+      imageSrc="/register.svg"
+    >
+      {serverMsg && (
+        <div
+          role="status"
+          aria-live="polite"
+          className={`-mt-10 mb-3 rounded-lg px-3 py-2 text-sm ${
+            serverMsg.startsWith("Account created")
+              ? "bg-green-50 text-green-700"
+              : "bg-red-50 text-red-700"
+          }`}
+        >
+          {serverMsg}
+>>>>>>> origin/main
+        </div>
+      )}
+
+<<<<<<< HEAD
         {/* Right Form */}
         <div className="w-full px-6 py-12 sm:px-10 md:w-1/2">
           <h2 className="mb-4 text-center text-2xl font-bold text-[#49BBBD]">
@@ -169,12 +208,63 @@ export default function Register() {
                   ? "cursor-not-allowed opacity-60"
                   : "hover:bg-[#3ca6a8]"
               }`}
+=======
+      <Formik
+        initialValues={{
+          name: "",
+          email: "",
+          username: "",
+          password: "",
+          confirm: "",
+          locale: "en",
+        }}
+        validationSchema={SignupSchema}
+        onSubmit={async (vals, { setSubmitting, setFieldError }) => {
+          setServerMsg(null);
+          const { confirm, ...payload } = vals;
+
+          const resultAction = await dispatch(signUp(payload));
+          setSubmitting(false);
+
+          if (signUp.rejected.match(resultAction)) {
+            const err = resultAction.payload;
+            if (err?.fieldErrors) {
+              Object.entries(err.fieldErrors).forEach(([k, msg]) => {
+                setFieldError(k, msg);
+              });
+            }
+            setServerMsg(err?.message || "Signup failed.");
+          } else {
+            onSuccess();
+          }
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form className="space-y-6">
+            <InputField name="name" label="Full name" />
+            <InputField name="username" label="Username" />
+            <InputField name="email" label="Email" type="email" autoComplete="email" />
+            <PasswordField name="password" label="Password" />
+            <PasswordField name="confirm" label="Confirm password" />
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="inline-flex w-full items-center justify-center rounded-2xl bg-blue-400 px-4 py-3.5 text-[17px] font-semibold text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-600 focus:outline-none disabled:opacity-60"
+>>>>>>> origin/main
             >
-              {status === "loading" ? "Registering..." : "Register"}
+              {isSubmitting ? "Creating…" : "Create Account"}
             </button>
-          </form>
-        </div>
-      </div>
-    </div>
+
+            <p className="text-sm text-gray-600">
+              Already have an account?{" "}
+              <Link to="/login" className="font-medium text-blue-600 hover:text-blue-700">
+                Sign in
+              </Link>
+            </p>
+          </Form>
+        )}
+      </Formik>
+    </AuthLayout>
   );
 }
