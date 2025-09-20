@@ -1,5 +1,3 @@
-// HeroSection.jsx
-
 import ActionButton from "./ActionButton";
 import InfoCard from "./InfoCard";
 

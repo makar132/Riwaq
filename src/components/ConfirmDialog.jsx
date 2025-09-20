@@ -6,7 +6,7 @@ export default function ConfirmDialog({
   message = "This action cannot be undone.",
   confirmText = "Delete",
   cancelText = "Cancel",
-  confirmTone = "danger", // "danger" | "primary"
+  confirmTone = "danger", 
   onCancel,
   onConfirm,
   loading = false,

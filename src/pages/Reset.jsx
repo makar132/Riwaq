@@ -1,4 +1,3 @@
-// src/pages/Reset.jsx
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AuthLayout from "../components/AuthLayout";
@@ -17,7 +16,6 @@ const ResetSchema = Yup.object({
 export default function Reset() {
   const [serverMsg, setServerMsg] = useState(null);
   const dispatch = useDispatch();
-  // const error = useSelector(selectAuthError);
 
   useEffect(() => {
     return () => {

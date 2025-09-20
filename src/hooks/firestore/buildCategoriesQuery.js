@@ -1,5 +1,5 @@
 import { collection, query, orderBy } from "firebase/firestore";
-import { db } from "../../firebase"; // adjust path
+import { db } from "../../firebase";
 
 /**
  * Server-side sort only (createdAt + asc/desc).

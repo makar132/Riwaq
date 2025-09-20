@@ -1,4 +1,3 @@
-// src/components/Pager.jsx
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 export default function Pager({
@@ -6,7 +5,7 @@ export default function Pager({
   totalPages,
   onPrev,
   onNext,
-  onGo, // optional direct jump
+  onGo,
   rangeStart,
   rangeEnd,
   totalItems,

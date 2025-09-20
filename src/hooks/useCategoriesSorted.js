@@ -3,7 +3,8 @@ import { getDocs } from "firebase/firestore";
 import { buildCategoriesQuery } from "./firestore/buildCategoriesQuery";
 
 /**
- * Server-side sort by createdAt; optional client search remains in page.
+ * Server-side sort by createdAt; client-side pagination.
+ * (Optional: if you add a name_lc field later, you can enable server prefix search too.)
  */
 export function useCategoriesSorted({ dir = "desc" }) {
   return useQuery({

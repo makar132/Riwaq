@@ -9,15 +9,11 @@ export default function Forbidden() {
       aria-labelledby="forbidden-title"
       className="relative min-h-[calc(100svh-var(--nav-h))] overflow-hidden bg-gradient-to-br from-[#49BBBD] via-[#36A2A4] to-[#2F7E80] text-white"
     >
-      {/* subtle 'forbidden' accents (no horizontal scroll) */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {/* diagonal red wash */}
         <div className="absolute -top-10 right-[-30%] h-[140%] w-[60%] rotate-12 bg-gradient-to-b from-rose-500/25 to-transparent blur-2xl" />
-        {/* soft red glow */}
         <div className="absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-rose-400/20 blur-3xl" />
       </div>
 
-      {/* centered content */}
       <div className="mx-auto flex min-h-[inherit] w-full max-w-7xl items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-md text-center">
           <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-semibold text-white/90 ring-1 ring-white/20">
