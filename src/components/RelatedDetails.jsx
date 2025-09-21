@@ -36,7 +36,7 @@ const RelatedDetails = () => {
   const cardData = [
     {
       id: 1,
-      image: '/relatedDetails1.png',
+      image: 'relatedDetails1.png',
       title: 'Class adds $30 million to its balance sheet for a Zoom-friendly edtech solution',
       authorPic: 'https://randomuser.me/api/portraits/women/44.jpg',
       authorName: 'Lina',
@@ -45,7 +45,7 @@ const RelatedDetails = () => {
     },
     {
       id: 2,
-      image: '/relatedDetails2.png',
+      image: 'relatedDetails2.png',
       title: 'Class adds $30 million to its balance sheet for a Zoom-friendly edtech solution',
       authorPic: 'https://randomuser.me/api/portraits/women/44.jpg',
       authorName: 'Lina',

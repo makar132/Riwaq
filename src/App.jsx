@@ -31,7 +31,7 @@ export default function App() {
   }
 
   return (
-    <BrowserRouter basename="/Riwaq">
+    <BrowserRouter basename="/Riwaq/">
       <Navbar />
       <main className="pt-[var(--nav-h)]">
         <div className="min-h-[calc(100svh-var(--nav-h))] bg-gray-50">

@@ -32,7 +32,7 @@ function BlogArticle() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 space-y-4 md:space-y-0">
         <div className="flex items-center space-x-4">
           <img 
-            src="src\pages\images\2f32d3a9082c2e2832481561feec93a5e5c5e8d6.png" 
+            src="hero-section-1.png" 
             alt="Lina" 
             className="w-16 h-16 rounded-full object-cover"
           />
