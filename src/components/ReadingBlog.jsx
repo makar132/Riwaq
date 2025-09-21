@@ -12,7 +12,7 @@ export default function ReadingBlog() {
         {/* Card1*/}
          <div className="relative w-full h-40 rounded-lg overflow-hidden shadow-md">
           <img
-            src="/reading1.png"
+            src="reading1.png"
             alt="UI/UX"
             className="w-full h-full object-cover"
           />
@@ -31,7 +31,7 @@ export default function ReadingBlog() {
         {/* بطاقة 2 */}
         <div className="relative w-full h-40 rounded-xl overflow-hidden shadow-md">
           <img
-            src="/reading2.jpg"
+            src="reading2.jpg"
             alt="React"
             className="w-full h-full object-cover"
           />
@@ -51,7 +51,7 @@ export default function ReadingBlog() {
         {/* بطاقة 3 */}
         <div className="relative w-full h-40 rounded-xl overflow-hidden shadow-md">
           <img
-            src="/reading3.jpg"
+            src="reading3.jpg"
             alt="PHP"
             className="w-full h-full object-cover "
           />
@@ -71,7 +71,7 @@ export default function ReadingBlog() {
         {/* بطاقة 4 */}
         <div className="relative w-full h-40 rounded-xl overflow-hidden shadow-md">
           <img
-            src="/reading4.png"
+            src="reading4.png"
             alt="JavaScript"
             className="w-full h-full object-cover brightness-110"
           />

@@ -21,7 +21,7 @@
       {/* Right Image Section */}
       <div className="md:w-1/2">
         <img
-          src="/physicalClassRoom.jpg"
+          src="physicalClassRoom.jpg"
           alt="Online meeting on laptop"
           className="rounded-lg shadow-lg object-cover w-full h-auto"
         />

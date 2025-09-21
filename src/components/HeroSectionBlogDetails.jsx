@@ -5,7 +5,7 @@ function HeroSectionBlogDetails() {
     <div>
       
       <img
-        src="/blogDetails.jpg"
+        src="blogDetails.jpg"
         alt="A group of people in a meeting"
         className="w-full h-auto object-cover"
       />

@@ -61,7 +61,7 @@ const CourseMarketingArticles = () => {
   const cardData = [
     {
       id: 1,
-      image: '/marketArticle.png',
+      image: 'marketArticle.png',
       title: 'AWS Certified solutions Architect',
       authorPic: 'https://randomuser.me/api/portraits/women/44.jpg',
       authorName: 'Lina',
@@ -74,7 +74,7 @@ const CourseMarketingArticles = () => {
     },
     {
       id: 2,
-      image: '/marketArticle2.png',
+      image: 'marketArticle2.png',
       title: 'AWS Certified solutions Architect',
       authorPic: 'https://randomuser.me/api/portraits/women/44.jpg',
       authorName: 'Lina',
@@ -87,7 +87,7 @@ const CourseMarketingArticles = () => {
     },
     {
       id: 3,
-      image: '/marketArticle3.jpg',
+      image: 'marketArticle3.jpg',
       title: 'AWS Certified solutions Architect',
       authorPic: 'https://randomuser.me/api/portraits/women/44.jpg',
       authorName: 'Lina',
@@ -100,7 +100,7 @@ const CourseMarketingArticles = () => {
     },
     {
       id: 4,
-      image: '/marketArticle4.png',
+      image: 'marketArticle4.png',
       title: 'AWS Certified solutions Architect',
       authorPic: 'https://randomuser.me/api/portraits/women/44.jpg',
       authorName: 'Lina',

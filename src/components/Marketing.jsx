@@ -61,7 +61,7 @@ const Marketing = () => {
   const cardData = [
     {
       id: 1,
-      image: '/marketArticle.png',
+      image: 'marketArticle.png',
       title: 'AWS Certified solutions Architect',
       authorPic: 'https://randomuser.me/api/portraits/women/44.jpg',
       authorName: 'Lina',
@@ -74,7 +74,7 @@ const Marketing = () => {
     },
     {
       id: 2,
-      image: '/reading1.png',
+      image: 'reading1.png',
       title: 'AWS Certified solutions Architect',
       authorPic: 'https://randomuser.me/api/portraits/women/44.jpg',
       authorName: 'Lina',
@@ -87,7 +87,7 @@ const Marketing = () => {
     },
     {
       id: 3,
-      image: '/marketArticle4.png',
+      image: 'marketArticle4.png',
       title: 'AWS Certified solutions Architect',
       authorPic: 'https://randomuser.me/api/portraits/women/44.jpg',
       authorName: 'Lina',
@@ -100,7 +100,7 @@ const Marketing = () => {
     },
     {
       id: 4,
-      image: '/marketArticle5.png',
+      image: 'marketArticle5.png',
       title: 'AWS Certified solutions Architect',
       authorPic: 'https://randomuser.me/api/portraits/women/44.jpg',
       authorName: 'Lina',

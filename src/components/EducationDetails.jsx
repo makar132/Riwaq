@@ -22,19 +22,19 @@ const EducationDetails = () => {
       discount: "50%",
       title: "FOR INSTRUCTORS",
       description: "TOTC's school management software helps traditional and online schools manage scheduling.",
-      imageSrc: "/relatedDetails1.png", // Use your actual image URL here
+      imageSrc: "relatedDetails1.png", // Use your actual image URL here
     },
     {
       discount: "50%",
       title: "FOR INSTRUCTORS",
       description: "TOTC's school management software helps traditional and online schools manage scheduling.",
-      imageSrc: "/relatedDetails1.png",
+      imageSrc: "relatedDetails1.png",
     },
     {
       discount: "50%",
       title: "FOR INSTRUCTORS",
       description: "TOTC's school management software helps traditional and online schools manage scheduling.",
-      imageSrc: "/relatedDetails1.png",
+      imageSrc: "relatedDetails1.png",
     },
   ];
 
